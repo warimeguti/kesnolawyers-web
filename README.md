@@ -33,4 +33,4 @@ Google Fonts, embedded Google Maps and the existing FormSubmit enquiry integrati
 
 ## Status
 
-Repository write access and dedicated SSH key login confirmed. Site references and shell syntax validated locally. Actions secrets, variables and the first successful automated deployment remain pending verification. Repository preparation does not establish live deployment success.
+Automatic deployment verified on 15 October 2026 (Papua New Guinea time). Run 38576050082, attempt 3, succeeded: site validation, SSH configuration, full pre-deployment backup, server copy, and byte-for-byte HTTP verification of all six HTML pages. First deployed site commit: accca2fc6ec37966e14d23b1d8d24287d5b4a743. Future main-branch changes to website files or deployment code trigger the same workflow. README-only edits do not deploy. Contact-form submission was not tested.
