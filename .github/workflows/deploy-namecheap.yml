@@ -1,0 +1,70 @@
+name: Deploy Kesno Lawyers to Namecheap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '*.html'
+      - 'css/**'
+      - 'js/**'
+      - 'images/**'
+      - 'scripts/**'
+      - '.github/workflows/deploy-namecheap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kesno-namecheap-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DEPLOY_HOST: ${{ vars.NAMECHEAP_HOST }}
+      DEPLOY_USER: ${{ vars.NAMECHEAP_USER }}
+      DEPLOY_PORT: 21098
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Validate website
+        run: python3 scripts/check-site.py
+      - name: Configure SSH
+        env:
+          DEPLOY_KEY: ${{ secrets.NAMECHEAP_SSH_KEY }}
+          KNOWN_HOSTS: ${{ secrets.NAMECHEAP_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_KEY" || { echo 'Add NAMECHEAP_SSH_KEY in repository Actions secrets.'; exit 1; }
+          test -n "$KNOWN_HOSTS" || { echo 'Add NAMECHEAP_KNOWN_HOSTS in repository Actions secrets.'; exit 1; }
+          [[ "$DEPLOY_HOST" =~ ^[a-zA-Z0-9.-]+$ ]] || { echo "Set NAMECHEAP_HOST repository variable."; exit 1; }
+          [[ "$DEPLOY_USER" =~ ^[a-zA-Z0-9_]+$ ]] || { echo "Set NAMECHEAP_USER repository variable."; exit 1; }
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/kesno_deploy
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/kesno_deploy ~/.ssh/known_hosts
+          ssh-keygen -y -f ~/.ssh/kesno_deploy > /dev/null
+          ssh-keygen -F "[$DEPLOY_HOST]:$DEPLOY_PORT" -f ~/.ssh/known_hosts > /dev/null
+      - name: Upload and deploy website
+        run: |
+          set -euo pipefail
+          release="${GITHUB_SHA}-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          tar -czf "$RUNNER_TEMP/site.tar.gz" index.html about.html clients.html contact.html services.html team.html css js images
+          ssh_options=(-i "$HOME/.ssh/kesno_deploy" -o BatchMode=yes -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes -o ConnectTimeout=30)
+          ssh "${ssh_options[@]}" -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" 'mkdir -p ~/kesno-deploy/incoming'
+          scp -O "${ssh_options[@]}" -P "$DEPLOY_PORT" "$RUNNER_TEMP/site.tar.gz" "$DEPLOY_USER@$DEPLOY_HOST:kesno-deploy/incoming/$release.tar.gz"
+          ssh "${ssh_options[@]}" -p "$DEPLOY_PORT" "$DEPLOY_USER@$DEPLOY_HOST" "bash -s -- $release" < scripts/deploy-remote.sh
+      - name: Verify live pages
+        run: |
+          set -euo pipefail
+          for page in index about clients contact services team; do
+            curl --fail --silent --show-error --location --retry 2 --max-time 45 "https://kesnolawyers.com/$page.html?deployment=$GITHUB_SHA" -o "$RUNNER_TEMP/$page.live.html"
+            cmp "$page.html" "$RUNNER_TEMP/$page.live.html"
+          done
+      - name: Remove runner credentials
+        if: always()
+        run: rm -f ~/.ssh/kesno_deploy

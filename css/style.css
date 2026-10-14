@@ -1,0 +1,1935 @@
+/* ==========================================================================
+   KESNO LAWYERS — DESIGN SYSTEM
+   ========================================================================== */
+
+:root{
+  --ink:#3D2145;
+  --ink-2:#4A2A54;
+  --ink-3:#603A69;
+  --purple:#7A4488;
+  --purple-dp:#5A2F66;
+  --orchid:#A671B0;
+  --blush:#F2E4EC;
+  --gold:#5A2F66;
+  --gold-dp:#46264F;
+  --paper:#FFFFFF;
+  --paper-2:#F2E4EC;
+  --charcoal:#2B2230;
+  --muted:#7C6C7F;
+  --muted-ink:#DCC8D8;
+  --line:#ECD9E4;
+  --max:1180px;
+  --gap:clamp(1.25rem,2vw,2.5rem);
+}
+
+
+/* ==========================================================================
+   GLOBAL
+   ========================================================================== */
+
+*,*::before,*::after{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--charcoal);
+  font-family:'Manrope',Arial,sans-serif;
+  font-size:17px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+
+img{
+  max-width:100%;
+  display:block;
+}
+
+a{
+  color:inherit;
+}
+
+h1,h2,h3,h4{
+  font-family:'Fraunces',Georgia,serif;
+  font-weight:600;
+  line-height:1.08;
+  margin:0;
+  letter-spacing:-0.01em;
+}
+
+p{
+  margin:0 0 1.1em;
+  max-width:62ch;
+}
+
+.muted{
+  color:var(--muted);
+}
+
+.on-ink .muted{
+  color:var(--muted-ink);
+}
+
+
+@media (prefers-reduced-motion:reduce){
+
+  *{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+
+}
+
+
+:focus-visible{
+  outline:3px solid var(--purple);
+  outline-offset:3px;
+  border-radius:4px;
+}
+
+
+.wrap{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 clamp(20px,4vw,48px);
+}
+
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:.5em;
+  font-family:'Manrope',sans-serif;
+  font-weight:700;
+  font-size:.98rem;
+  padding:.9em 1.6em;
+  border-radius:2px;
+  text-decoration:none;
+  border:1.5px solid transparent;
+  cursor:pointer;
+  transition:
+    transform .15s ease,
+    background .15s ease,
+    border-color .15s ease,
+    color .15s ease;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-gold{
+  background:var(--purple);
+  color:#fff;
+}
+
+.btn-gold:hover{
+  background:var(--purple-dp);
+}
+
+.btn-outline-ink{
+  border-color:rgba(255,255,255,.4);
+  color:#fff;
+}
+
+.btn-outline-ink:hover{
+  border-color:#fff;
+  background:rgba(255,255,255,.08);
+}
+
+.btn-outline{
+  border-color:var(--purple);
+  color:var(--purple);
+}
+
+.btn-outline:hover{
+  background:var(--purple);
+  color:#fff;
+}
+
+
+/* ==========================================================================
+   HEADER / NAVIGATION
+   ========================================================================== */
+
+header.site{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:10px clamp(20px,4vw,48px);
+  max-width:var(--max);
+  margin:0 auto;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:.6em;
+  text-decoration:none;
+}
+
+.brand img{
+  height:70px;
+  width:auto;
+}
+
+.brand-word{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  color:var(--ink);
+  font-size:1.15rem;
+  letter-spacing:.01em;
+}
+
+nav.primary{
+  display:flex;
+  gap:2px;
+}
+
+nav.primary a{
+  color:var(--purple);
+  text-decoration:none;
+  font-weight:600;
+  font-size:.95rem;
+  padding:10px 14px;
+  border-radius:2px;
+  transition:color .15s ease,background .15s ease;
+}
+
+nav.primary a:hover{
+  color:var(--purple-dp);
+  background:var(--blush);
+}
+
+nav.primary a[aria-current="page"]{
+  color:var(--purple-dp);
+  font-weight:800;
+}
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.nav-social{
+  display:flex;
+  gap:8px;
+}
+
+.nav-social a{
+  width:34px;
+  height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  border:1px solid var(--line);
+  transition:border-color .15s ease,background .15s ease;
+}
+
+.nav-social a:hover{
+  border-color:var(--orchid);
+  background:var(--blush);
+}
+
+.nav-social svg{
+  width:15px;
+  height:15px;
+  fill:var(--purple);
+}
+
+.nav-social a:hover svg{
+  fill:var(--purple-dp);
+}
+
+.menu-btn{
+  display:none;
+  width:42px;
+  height:42px;
+  border-radius:2px;
+  border:1px solid var(--line);
+  background:transparent;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+}
+
+.menu-btn span,
+.menu-btn span::before,
+.menu-btn span::after{
+  content:"";
+  display:block;
+  width:18px;
+  height:2px;
+  background:var(--purple);
+  position:relative;
+}
+
+.menu-btn span::before{
+  position:absolute;
+  top:-6px;
+}
+
+.menu-btn span::after{
+  position:absolute;
+  top:6px;
+}
+
+.mobile-panel{
+  display:none;
+  background:#fff;
+  border-top:1px solid var(--line);
+}
+
+.mobile-panel.open{
+  display:block;
+}
+
+.mobile-panel .wrap{
+  padding-top:10px;
+  padding-bottom:20px;
+  display:flex;
+  flex-direction:column;
+}
+
+.mobile-panel a{
+  color:var(--purple);
+  text-decoration:none;
+  font-weight:600;
+  padding:12px 4px;
+  border-bottom:1px solid var(--line);
+}
+
+.mobile-panel a[aria-current="page"]{
+  color:var(--purple-dp);
+  font-weight:800;
+}
+
+
+/* ==========================================================================
+   STANDARD HERO
+   ========================================================================== */
+
+.hero{
+  position:relative;
+  background:var(--ink);
+  color:#fff;
+  overflow:hidden;
+}
+
+.hero .wrap{
+  position:relative;
+  z-index:2;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      900px 500px at 85% -10%,
+      rgba(122,68,136,.28),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px 500px at -5% 110%,
+      rgba(242,228,236,.16),
+      transparent 55%
+    );
+  pointer-events:none;
+}
+
+.eyebrow{
+  font-family:'Manrope',sans-serif;
+  font-weight:700;
+  font-size:.92rem;
+  color:var(--blush);
+  margin:0 0 14px;
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:clamp(24px,4vw,60px);
+  align-items:center;
+  padding-top:clamp(56px,8vw,110px);
+  padding-bottom:clamp(48px,6vw,90px);
+}
+
+.hero h1{
+  font-size:clamp(2.4rem,4.6vw,4rem);
+  color:#fff;
+}
+
+.hero .lede{
+  color:var(--muted-ink);
+  font-size:1.08rem;
+  margin:20px 0 28px;
+  max-width:52ch;
+}
+
+.hero-cta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+.hero-figure{
+  position:relative;
+  aspect-ratio:3/2;
+  clip-path:polygon(
+    10% 0,
+    100% 0,
+    100% 90%,
+    90% 100%,
+    0 100%,
+    0 10%
+  );
+
+  background:
+    linear-gradient(
+      160deg,
+      rgba(61,33,69,.15),
+      rgba(61,33,69,.55)
+    ),
+    var(--img) center/cover no-repeat,
+    var(--ink-2);
+
+  border:1px solid var(--ink-3);
+  animation:reveal .9s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes reveal{
+
+  from{
+    clip-path:polygon(
+      10% 8%,
+      92% 0,
+      92% 82%,
+      82% 92%,
+      0 92%,
+      0 18%
+    );
+    opacity:0;
+    transform:translateY(14px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+}
+
+.hero-figure .tag{
+  position:absolute;
+  left:18px;
+  bottom:18px;
+  background:rgba(61,33,69,.72);
+  border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(6px);
+  color:#fff;
+  font-weight:700;
+  font-size:.85rem;
+  padding:8px 14px;
+  border-radius:2px;
+}
+
+
+/* ==========================================================================
+   INNER PAGE HERO
+   ========================================================================== */
+
+.page-hero .hero-grid{
+  grid-template-columns:1fr;
+  padding-top:clamp(34px,4vw,52px);
+  padding-bottom:clamp(28px,3.5vw,46px);
+}
+
+.page-hero h1{
+  font-size:clamp(2.1rem,4vw,3.1rem);
+}
+
+/* Let inner-page hero introductions use the full content width
+   while staying inside the same .wrap margins as the heading. */
+.page-hero .lede{
+  max-width:none;
+}
+
+/* Tighter transition from inner-page hero into the first body section. */
+.page-hero + .section{
+  padding-top:clamp(40px,5vw,72px);
+}
+
+
+/* ==========================================================================
+   SECTIONS
+   ========================================================================== */
+
+.section{
+  padding:clamp(56px,8vw,104px) 0;
+}
+
+.section.alt{
+  background:var(--paper-2);
+}
+
+.section-head{
+  max-width:62ch;
+  margin-bottom:clamp(28px,4vw,48px);
+}
+
+.section-head h2{
+  font-size:clamp(1.9rem,3.2vw,2.6rem);
+  color:var(--ink);
+}
+
+.section-head p{
+  margin-top:14px;
+}
+
+.rule{
+  width:56px;
+  height:3px;
+  background:var(--gold);
+  border:none;
+  margin:0 0 18px;
+}
+
+
+/* ==========================================================================
+   ABOUT / SPLIT LAYOUT
+
+   IMPORTANT:
+   The image is now supplied directly from the HTML using
+   background-image:url('./images/...').
+   ========================================================================== */
+
+.split{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:clamp(28px,5vw,64px);
+  align-items:start;
+}
+
+.split.reverse{
+  grid-template-columns:1.15fr .85fr;
+}
+
+.split.reverse .split-figure{
+  order:2;
+}
+
+
+/* FIXED IMAGE CONTAINER */
+
+.split-figure{
+  aspect-ratio:16/9;
+
+  background-color:var(--paper-2);
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  border:1px solid var(--line);
+
+  position:sticky;
+  top:100px;
+}
+
+
+.badge-list{
+  margin-top:8px;
+}
+
+.anniversary-card{
+  margin:24px 0 28px;
+  padding:18px 20px;
+  border-left:3px solid var(--gold);
+  background:var(--paper-2);
+}
+
+.anniversary-card strong{
+  display:block;
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  color:var(--ink);
+  font-size:1.25rem;
+}
+
+.anniversary-card > span{
+  display:block;
+  margin-top:2px;
+  color:var(--purple);
+  font-weight:800;
+  font-size:.92rem;
+}
+
+.anniversary-card p{
+  margin:8px 0 0;
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+.badge-row{
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:14px;
+  align-items:start;
+  padding:18px 0;
+  border-top:1px solid var(--line);
+}
+
+.badge-row:last-child{
+  border-bottom:1px solid var(--line);
+}
+
+.badge-row .mark{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--purple);
+  margin-top:8px;
+}
+
+.badge-row strong{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  color:var(--ink);
+  font-size:1.05rem;
+}
+
+.badge-row span{
+  color:var(--muted);
+  display:block;
+  margin-top:2px;
+}
+
+
+/* ==========================================================================
+   SERVICES
+   ========================================================================== */
+
+.service-groups{
+  display:flex;
+  flex-direction:column;
+  gap:clamp(36px,5vw,56px);
+}
+
+.service-group h3{
+  font-size:1.4rem;
+  color:var(--purple-dp);
+  border-bottom:2px solid var(--gold);
+  padding-bottom:10px;
+  margin-bottom:6px;
+  display:inline-block;
+}
+
+.service-list{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 40px;
+}
+
+.service-item{
+  padding:20px 0;
+  border-top:1px solid var(--line);
+  display:grid;
+  grid-template-columns:1fr;
+  gap:4px;
+}
+
+.service-item strong{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  color:var(--ink);
+  font-size:1.08rem;
+}
+
+.service-item span{
+  color:var(--muted);
+  font-size:.96rem;
+}
+
+
+/* ==========================================================================
+   TEAM
+   ========================================================================== */
+
+/* Team page vertical spacing polish */
+.team-legal-section{
+  padding-top:clamp(44px,6vw,76px);
+  padding-bottom:30px;
+}
+
+.team-admin-section{
+  padding-top:30px;
+  padding-bottom:clamp(44px,6vw,76px);
+}
+
+
+.lawyer{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:clamp(24px,5vw,56px);
+  align-items:start;
+  padding:clamp(30px,4vw,48px) 0;
+  border-top:1px solid var(--line);
+}
+
+.lawyer:first-of-type{
+  border-top:none;
+}
+
+.lawyer.reverse{
+  grid-template-columns:1.2fr .8fr;
+}
+
+.lawyer.reverse .lawyer-photos{
+  order:2;
+}
+
+.lawyer-figure{
+  aspect-ratio:3/2;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(61,33,69,.05),
+      rgba(61,33,69,.4)
+    ),
+    var(--paper-2);
+
+  background-position:center top;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  border:1px solid var(--line);
+}
+
+.lawyer-role{
+  color:var(--purple);
+  font-weight:700;
+  font-size:.94rem;
+  margin-bottom:6px;
+}
+
+.lawyer h3{
+  font-size:clamp(1.5rem,2.6vw,2rem);
+  color:var(--ink);
+  margin-bottom:4px;
+}
+
+.lawyer .admitted{
+  display:inline-block;
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  color:var(--purple);
+  font-size:1.05rem;
+  margin:7px 0 10px;
+}
+
+.support-strip{
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:28px;
+  border:1px solid var(--line);
+  background:var(--paper-2);
+  margin-top:clamp(28px,4vw,44px);
+}
+
+.support-strip .lawyer-figure{
+  width:110px;
+  height:110px;
+  aspect-ratio:1;
+  flex:0 0 auto;
+}
+
+.support-strip strong{
+  font-family:'Fraunces',serif;
+  color:var(--ink);
+  display:block;
+  margin-bottom:4px;
+}
+
+
+/* ==========================================================================
+   CLIENTS
+   ========================================================================== */
+
+.client-directory{
+  background:var(--paper);
+}
+
+.client-categories{
+  display:flex;
+  flex-direction:column;
+  gap:clamp(36px,5vw,56px);
+}
+
+.client-category{
+  padding-top:34px;
+  border-top:1px solid var(--line);
+}
+
+.client-category:first-child{
+  padding-top:0;
+  border-top:0;
+}
+
+.client-category-head h3{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:1.4rem;
+  line-height:1.25;
+  color:var(--purple-dp);
+  border-bottom:2px solid var(--gold);
+  padding-bottom:10px;
+  margin:0 0 6px;
+  display:inline-block;
+}
+
+.client-category-head > p:last-child{
+  color:var(--muted);
+  font-size:.94rem;
+  line-height:1.55;
+  margin:0 0 4px;
+}
+
+.client-list{
+  margin:0;
+  padding:0;
+  list-style:none;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0 40px;
+}
+
+.client-list li{
+  padding:20px 0;
+  margin:0;
+  border-top:1px solid var(--line);
+  color:var(--ink);
+  font-family:'Manrope',sans-serif;
+  font-size:1rem;
+  font-weight:600;
+  line-height:1.45;
+}
+
+.client-list li:last-child{
+  margin-bottom:0;
+}
+
+.client-list span{
+  display:block;
+}
+
+.client-list small{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-family:'Manrope',sans-serif;
+  font-size:.78rem;
+  font-weight:500;
+  line-height:1.55;
+}
+
+
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+
+.contact-grid{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:clamp(28px,5vw,56px);
+  align-items:start;
+}
+
+.contact-card{
+  border-top:2px solid var(--gold);
+  padding-top:22px;
+}
+
+.field{
+  padding:16px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.field:first-child{
+  padding-top:0;
+}
+
+.field strong{
+  display:block;
+  color:var(--ink);
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  margin-bottom:6px;
+}
+
+.field a{
+  color:var(--purple);
+  font-weight:700;
+  text-decoration:none;
+}
+
+.field a:hover{
+  text-decoration:underline;
+}
+
+.contact-aside{
+  background:var(--ink);
+  color:#fff;
+  padding:28px;
+  position:relative;
+}
+
+.contact-aside h3{
+  color:var(--blush);
+  font-size:1.2rem;
+  margin-bottom:10px;
+}
+
+.contact-aside .hrs{
+  font-size:1.4rem;
+  font-family:'Fraunces',serif;
+  margin:4px 0 18px;
+}
+
+.contact-aside hr{
+  border:none;
+  border-top:1px solid var(--ink-3);
+  margin:18px 0;
+}
+
+.contact-aside a{
+  color:#fff;
+}
+
+.find-us-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:28px;
+  align-items:start;
+  margin-top:32px;
+}
+
+.find-us-label{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:1.1rem;
+  color:var(--ink);
+  margin:0 0 12px;
+}
+
+.map-figure{
+  aspect-ratio:16/10;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(61,33,69,.1),
+      rgba(61,33,69,.55)
+    ),
+    var(--img) center/cover no-repeat,
+    var(--paper-2);
+
+  border:1px solid var(--line);
+  position:relative;
+}
+
+.office-figure{
+  aspect-ratio:16/10;
+  background-color:var(--paper-2);
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  border:1px solid var(--line);
+}
+
+.map-figure .pin{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-100%);
+  width:16px;
+  height:16px;
+  border-radius:50% 50% 50% 0;
+  background:var(--gold);
+  transform-origin:bottom;
+  rotate:-45deg;
+  box-shadow:0 0 0 6px rgba(242,228,236,.24);
+}
+
+.social-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:6px;
+}
+
+.social-row a{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:10px 14px;
+  border:1px solid var(--line);
+  text-decoration:none;
+  color:var(--ink);
+  font-weight:700;
+  font-size:.92rem;
+  transition:border-color .15s ease,background .15s ease;
+}
+
+.social-row a:hover{
+  border-color:var(--purple);
+  background:#fff;
+}
+
+.social-row svg{
+  width:16px;
+  height:16px;
+  fill:var(--purple);
+}
+
+
+/* ==========================================================================
+   QUICK LINKS
+   ========================================================================== */
+
+.quick-links{
+  display:flex;
+  flex-direction:column;
+}
+
+.quick-link{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:20px;
+  padding:24px 0;
+  border-top:1px solid var(--line);
+  text-decoration:none;
+  color:inherit;
+  transition:padding-left .2s ease;
+}
+
+.quick-links > :last-child{
+  border-bottom:1px solid var(--line);
+}
+
+.quick-link:hover{
+  padding-left:10px;
+}
+
+.quick-link .ql-title{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:1.4rem;
+  color:var(--ink);
+}
+
+.quick-link:hover .ql-title{
+  color:var(--purple);
+}
+
+.quick-link .ql-sub{
+  color:var(--muted);
+  font-size:.95rem;
+  white-space:nowrap;
+}
+
+.values-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.5em 1.2em;
+  font-weight:700;
+  color:var(--gold);
+  font-size:1.05rem;
+  margin-top:8px;
+}
+
+.values-row span:not(:last-child)::after{
+  content:"•";
+  margin-left:1.2em;
+  color:var(--ink-3);
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+footer.site{
+  background:var(--ink);
+  color:var(--muted-ink);
+  padding:clamp(44px,6vw,64px) 0 26px;
+}
+
+.footer-grid{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  gap:clamp(24px,4vw,48px);
+}
+
+.footer-grid h4{
+  color:#fff;
+  font-size:1rem;
+  margin-bottom:14px;
+}
+
+.footer-grid a{
+  color:var(--muted-ink);
+  text-decoration:none;
+  display:block;
+  margin-bottom:8px;
+  font-size:.95rem;
+}
+
+.footer-grid a:hover{
+  color:var(--blush);
+}
+
+.footer-brand{
+  display:flex;
+  align-items:center;
+  gap:.6em;
+  margin-bottom:14px;
+}
+
+.footer-brand img{
+  height:32px;
+}
+
+.footer-brand span{
+  font-family:'Fraunces',serif;
+  color:#fff;
+  font-size:1.1rem;
+}
+
+.footer-bottom{
+  border-top:1px solid var(--ink-3);
+  margin-top:36px;
+  padding-top:22px;
+  font-size:.86rem;
+  color:var(--muted-ink);
+  line-height:1.7;
+}
+
+.footer-social{
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+
+.footer-social a{
+  width:34px;
+  height:34px;
+  border:1px solid var(--ink-3);
+  border-radius:50%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.footer-social svg{
+  width:15px;
+  height:15px;
+  fill:var(--muted-ink);
+}
+
+.footer-social a:hover svg{
+  fill:var(--blush);
+}
+
+
+/* ==========================================================================
+   DOCUMENTARY HOME HERO
+   ========================================================================== */
+
+.hero-doc{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  min-height:clamp(500px, 46vw, 600px);
+  background:var(--ink);
+  color:#fff;
+  overflow:hidden;
+}
+
+.hero-doc .photo{
+  position:absolute;
+  inset:0;
+  background-color:var(--ink-2);
+  background-position:center 10%;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+.hero-doc .photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      0deg,
+      rgba(61,33,69,.9) 0%,
+      rgba(61,33,69,.65) 30%,
+      rgba(61,33,69,.38) 60%,
+      rgba(61,33,69,.2) 100%
+    );
+}
+
+.hero-doc .copy{
+  position:relative;
+  z-index:1;
+  width:100%;
+  padding:
+    clamp(24px,4vw,40px)
+    clamp(20px,4vw,48px)
+    clamp(32px,4vw,44px);
+}
+
+.hero-doc .copy > *{
+  max-width:var(--max);
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Bottom-right firm information is kept clear of the main headline and faces. */
+.hero-side-note{
+  position:absolute;
+  z-index:2;
+  right:clamp(20px,4vw,48px);
+  bottom:clamp(22px,3vw,34px);
+  width:min(430px,38vw);
+  padding:14px 18px 12px;
+  color:#fff;
+  background:rgba(61,33,69,.72);
+  border-left:2px solid var(--orchid);
+  backdrop-filter:blur(4px);
+  box-shadow:0 8px 24px rgba(0,0,0,.12);
+}
+
+.hero-side-note p{
+  margin:0 0 9px;
+  max-width:none;
+  color:#fff;
+  font-size:.88rem;
+  line-height:1.45;
+  text-shadow:0 1px 8px rgba(0,0,0,.3);
+}
+
+.hero-side-note .anniversary-mark{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  margin:0;
+  padding:0;
+  border:0;
+  background:transparent;
+  backdrop-filter:none;
+  box-shadow:none;
+}
+
+.hero-side-note .anniversary-mark strong{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  font-size:1.05rem;
+  color:#fff;
+}
+
+.hero-side-note .anniversary-mark span{
+  color:var(--blush);
+  font-weight:700;
+  font-size:.88rem;
+  white-space:nowrap;
+}
+
+.hero-doc h1{
+  font-size:clamp(2rem,4vw,3.2rem);
+  color:#fff;
+  text-shadow:0 2px 14px rgba(0,0,0,.4);
+  margin-bottom:22px;
+}
+
+.hero-doc .eyebrow{
+  text-shadow:0 1px 8px rgba(0,0,0,.4);
+}
+
+.hero-establishment{
+  color:#fff;
+  max-width:58ch;
+  margin:0 0 18px;
+  font-size:1rem;
+  line-height:1.55;
+  text-shadow:0 1px 10px rgba(0,0,0,.35);
+}
+
+.hero-doc .lede{
+  color:var(--muted-ink);
+  max-width:56ch;
+  margin:16px auto 24px;
+  text-shadow:0 1px 10px rgba(0,0,0,.35);
+}
+
+
+/* ==========================================================================
+   PHOTO BANNER
+   ========================================================================== */
+
+.photo-banner{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  min-height:clamp(240px, 26vw, 340px);
+  background:var(--paper-2) center 15%/cover no-repeat;
+  overflow:hidden;
+  margin-bottom:0;
+}
+
+.photo-banner::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(
+      0deg,
+      rgba(61,33,69,.88) 0%,
+      rgba(61,33,69,.35) 50%,
+      rgba(61,33,69,.05) 80%,
+      transparent 100%
+    );
+}
+
+.photo-banner .cap{
+  position:relative;
+  z-index:1;
+  width:100%;
+  padding:20px clamp(20px,4vw,48px);
+  max-width:var(--max);
+  margin:0 auto;
+}
+
+.photo-banner .cap .eyebrow{
+  margin-bottom:4px;
+}
+
+.photo-banner .cap h2{
+  color:#fff;
+  font-size:clamp(1.5rem,2.6vw,2.1rem);
+}
+
+
+/* ==========================================================================
+   STAFF DIRECTORY
+   ========================================================================== */
+
+.team-section-heading{
+  max-width:720px;
+  margin-bottom:clamp(10px,1.5vw,16px);
+}
+
+.team-section-heading .eyebrow{
+  margin-bottom:8px;
+}
+
+.team-section-heading h2{
+  margin-bottom:10px;
+}
+
+.team-section-heading > p:last-child{
+  margin:0;
+  color:var(--muted);
+  max-width:620px;
+}
+
+.staff-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:clamp(20px,3vw,32px);
+  padding:clamp(24px,3.5vw,40px) 0;
+}
+
+.staff-card{}
+
+.staff-card .photo{
+  aspect-ratio:4/3;
+  background:var(--paper-2) center top/cover no-repeat;
+  border:1px solid var(--line);
+  margin-bottom:20px;
+  position:relative;
+}
+
+.staff-card strong{
+  font-family:'Fraunces',serif;
+  font-weight:600;
+  color:var(--ink);
+  font-size:1.1rem;
+  line-height:1.25;
+  display:block;
+  margin-bottom:5px;
+}
+
+.staff-role{
+  display:block;
+  color:var(--ink);
+  font-size:.94rem;
+  font-weight:700;
+  line-height:1.45;
+  margin-bottom:7px;
+}
+
+.staff-overview{
+  margin:0;
+  color:var(--muted);
+  font-size:.94rem;
+  line-height:1.65;
+}
+
+
+
+/* ==========================================================================
+   LAWYER PHOTO SECTION
+   ========================================================================== */
+
+.lawyer-photos{
+  display:block;
+}
+
+/* On desktop, bring the Principal Lawyer portrait down so its top
+   aligns with the lawyer's name rather than the role label. */
+@media (min-width:981px){
+  .lawyer.principal-lawyer .lawyer-photos{
+    padding-top:30px;
+  }
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — TABLET
+   ========================================================================== */
+
+@media (min-width:601px){
+  /* Space 3: tighter separation between the two lawyer profiles. */
+  .lawyer + .lawyer{
+    padding-top:18px;
+  }
+}
+
+@media (max-width:980px){
+
+  nav.primary{
+    display:none;
+  }
+
+  .menu-btn{
+    display:inline-flex;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero-figure{
+    order:-1;
+    aspect-ratio:16/10;
+  }
+
+  .split{
+    grid-template-columns:1fr;
+  }
+
+  .split.reverse{
+    grid-template-columns:1fr;
+  }
+
+  .split-figure{
+    position:static;
+    aspect-ratio:16/9;
+    order:-1;
+  }
+
+  .split.reverse .split-figure{
+    order:-1;
+  }
+
+  .lawyer,
+  .lawyer.reverse{
+    grid-template-columns:1fr;
+  }
+
+  .lawyer-figure{
+    order:-1;
+    aspect-ratio:16/9;
+  }
+
+  .lawyer.reverse .lawyer-figure{
+    order:-1;
+  }
+
+  .service-list{
+    grid-template-columns:1fr;
+  }
+
+  .client-list{
+    grid-template-columns:1fr;
+  }
+
+  .contact-grid{
+    grid-template-columns:1fr;
+  }
+
+  .find-us-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .staff-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+
+/* ==========================================================================
+   RESPONSIVE — MOBILE
+   ========================================================================== */
+
+@media (max-width:600px){
+
+  .team-legal-section,
+  .team-admin-section{
+    padding-top:36px;
+    padding-bottom:36px;
+  }
+
+  .lawyer{
+    padding:28px 0;
+  }
+
+  .staff-grid{
+    padding:22px 0;
+  }
+
+  body{
+    font-size:16px;
+  }
+
+  /* Mobile hero: show the COMPLETE group photograph first, then place all
+     text below it. This avoids cropping people out and keeps text off faces. */
+  .hero-doc{
+    display:block;
+    min-height:0;
+    background:var(--ink);
+  }
+
+  .hero-doc .photo{
+    position:relative;
+    inset:auto;
+    width:100%;
+    aspect-ratio:16/9;
+    background-position:center center !important;
+    background-size:100% 100% !important;
+  }
+
+  .hero-doc .photo::after{
+    background:linear-gradient(
+      0deg,
+      rgba(61,33,69,.12) 0%,
+      rgba(61,33,69,.02) 100%
+    );
+  }
+
+  .hero-doc .copy{
+    position:relative;
+    z-index:1;
+    padding:28px 20px 22px;
+    background:var(--ink);
+  }
+
+  .hero-doc .copy > *{
+    max-width:none;
+  }
+
+  .hero-doc h1{
+    font-size:clamp(2rem,8.5vw,2.7rem);
+    margin-bottom:20px;
+  }
+
+  .hero-doc .hero-cta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+
+  .hero-doc .hero-cta .btn{
+    flex:1 1 220px;
+    text-align:center;
+  }
+
+  .hero-side-note{
+    position:relative;
+    left:auto;
+    right:auto;
+    bottom:auto;
+    width:auto;
+    padding:16px 20px 18px;
+    margin:0;
+    background:var(--ink-2);
+    border-left:3px solid var(--orchid);
+    box-shadow:none;
+    backdrop-filter:none;
+  }
+
+  .hero-side-note p{
+    font-size:.9rem;
+    line-height:1.5;
+    margin-bottom:9px;
+  }
+
+  .hero-side-note .anniversary-mark{
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:2px 10px;
+  }
+
+  .hero-side-note .anniversary-mark strong{
+    font-size:1rem;
+  }
+
+  .hero-side-note .anniversary-mark span{
+    font-size:.84rem;
+  }
+
+  .hero-doc h1{
+    font-size:clamp(2rem,8.5vw,2.7rem);
+    margin-bottom:20px;
+  }
+
+
+  .support-strip{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .hero-side-note{
+    left:16px;
+    right:16px;
+    bottom:16px;
+    width:auto;
+    padding:12px 15px 11px;
+  }
+
+  .hero-side-note p{
+    font-size:.82rem;
+    line-height:1.4;
+    margin-bottom:7px;
+  }
+
+  .hero-side-note .anniversary-mark{
+    align-items:center;
+  }
+
+  .hero-side-note .anniversary-mark strong{
+    font-size:.98rem;
+  }
+
+  .hero-side-note .anniversary-mark span{
+    font-size:.82rem;
+  }
+
+  .hero-side-note .anniversary-mark{
+    flex-wrap:wrap;
+    gap:2px 10px;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr;
+  }
+
+  .nav-social{
+    display:none;
+  }
+
+  .brand img{
+    height:54px;
+  }
+
+  .staff-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+/* ========================================================================
+   FINAL MOBILE HERO — WAIST-LEVEL GROUP PORTRAIT
+   Keeps all seven people in frame while removing unnecessary lower-body
+   space. Text remains completely outside the photograph.
+   ======================================================================== */
+@media (max-width:600px){
+  .hero-doc .photo{
+    aspect-ratio:16/7.2;
+    background-size:cover !important;
+    background-position:center top !important;
+  }
+
+  .hero-doc .photo::after{
+    background:linear-gradient(
+      0deg,
+      rgba(61,33,69,.10) 0%,
+      rgba(61,33,69,.02) 100%
+    );
+  }
+
+  .hero-doc .copy{
+    padding:28px 20px 24px;
+  }
+
+  .hero-doc h1{
+    margin-bottom:22px;
+  }
+
+  .hero-doc .hero-cta{
+    gap:14px;
+  }
+
+  .hero-doc .hero-cta .btn{
+    flex:1 1 100%;
+  }
+
+  .hero-side-note{
+    padding:17px 20px 19px;
+  }
+
+  .hero-side-note p{
+    font-size:.9rem;
+    line-height:1.48;
+    margin-bottom:10px;
+  }
+
+  .hero-side-note .anniversary-mark{
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:3px 9px;
+  }
+
+  .hero-side-note .anniversary-mark strong{
+    font-size:1rem;
+  }
+
+  .hero-side-note .anniversary-mark span{
+    font-size:.84rem;
+  }
+}
+
+/* Very narrow phones: slightly shorter photo while retaining every face. */
+@media (max-width:380px){
+  .hero-doc .photo{
+    aspect-ratio:16/6.9;
+  }
+
+  .hero-doc .copy{
+    padding:24px 16px 20px;
+  }
+
+  .hero-side-note{
+    padding:15px 16px 17px;
+  }
+}
+
+/* Contact enquiry form */
+.contact-form-wrap{
+  margin-top:4px;
+}
+
+.contact-form-wrap h3{
+  margin-bottom:16px;
+}
+
+.contact-form-wrap form{
+  display:grid;
+  gap:9px;
+}
+
+.contact-form-wrap label{
+  color:#fff;
+  font-weight:700;
+  font-size:.82rem;
+  margin-top:4px;
+}
+
+.contact-form-wrap input,
+.contact-form-wrap select,
+.contact-form-wrap textarea{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid var(--ink-3);
+  background:#fff;
+  color:var(--ink);
+  padding:11px 12px;
+  border-radius:3px;
+  font:inherit;
+  font-size:.9rem;
+}
+
+.contact-form-wrap textarea{
+  resize:vertical;
+  min-height:130px;
+}
+
+.contact-form-wrap input:focus,
+.contact-form-wrap select:focus,
+.contact-form-wrap textarea:focus{
+  outline:2px solid var(--gold);
+  outline-offset:1px;
+}
+
+.contact-form-wrap .btn{
+  margin-top:8px;
+  border:0;
+  cursor:pointer;
+  width:100%;
+}
+
+.form-note{
+  color:rgba(255,255,255,.7);
+  font-size:.76rem;
+  line-height:1.45;
+  margin:10px 0 0;
+}
+
+@media (max-width:700px){
+  .find-us-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+/* ==========================================================================
+   SOCIAL / WHATSAPP CONTACT
+   ========================================================================== */
+
+.contact-channel{
+  display:inline-block;
+  margin-left:8px;
+}
+
+.whatsapp-link{
+  display:inline-block;
+  padding:2px 7px;
+  border:1px solid var(--line);
+  font-size:.78rem;
+  font-weight:800;
+  text-decoration:none !important;
+}
+
+.whatsapp-link:hover{
+  border-color:var(--purple);
+  background:var(--paper-2);
+}
+
+.footer-social{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:10px;
+  margin:0 0 14px;
+}
+
+.footer-social a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:34px;
+  height:34px;
+  border:1px solid var(--ink-3);
+  color:var(--muted-ink);
+  text-decoration:none;
+  transition:border-color .15s ease, color .15s ease, background .15s ease;
+}
+
+.footer-social a:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+  background:rgba(255,255,255,.03);
+}
+
+.footer-social svg{
+  width:16px;
+  height:16px;
+  fill:currentColor;
+}
+
+@media (max-width:640px){
+  .contact-channel{
+    margin-left:5px;
+  }
+
+  .whatsapp-link{
+    font-size:.75rem;
+  }
+}
+
+
+/* Mobile quick links: allow descriptions to wrap within the screen. */
+@media (max-width:600px){
+  .quick-link{
+    align-items:flex-start;
+    justify-content:flex-start;
+    flex-direction:column;
+    gap:4px;
+    width:100%;
+    min-width:0;
+    padding:20px 0;
+  }
+
+  .quick-link .ql-title,
+  .quick-link .ql-sub{
+    display:block;
+    width:100%;
+    min-width:0;
+    white-space:normal;
+  }
+
+  .quick-link .ql-title{
+    font-size:1.25rem;
+    line-height:1.2;
+  }
+
+  .quick-link .ql-sub{
+    font-size:.92rem;
+    line-height:1.5;
+    overflow-wrap:anywhere;
+  }
+}
